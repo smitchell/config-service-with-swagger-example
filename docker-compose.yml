@@ -1,0 +1,53 @@
+version: '3.3'
+
+networks:
+  sample-network:
+    driver: bridge
+
+services:
+  config-service:
+    build:
+      context: config-service
+    healthcheck:
+      test: "curl --fail --silent localhost:8888/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+    ports:
+      - 8888:8888
+    restart: always
+    networks:
+      - sample-network
+
+  sample-client:
+    build:
+      context: sample-client
+    healthcheck:
+      test: "curl --fail --silent localhost:8181/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - config-service
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+    ports:
+      - 8181:8181
+    restart: always
+    networks:
+      - sample-network
+

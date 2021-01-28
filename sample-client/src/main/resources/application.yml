@@ -1,0 +1,17 @@
+---
+server:
+  port: 8181
+
+spring:
+  application:
+    name: sample-client
+  config:
+    import: optional:configserver:http://localhost:8888/
+  profiles:
+    active: default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

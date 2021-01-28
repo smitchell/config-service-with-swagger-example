@@ -1,0 +1,6 @@
+---
+spring:
+  application:
+    name: sample-client
+
+message: Hello World
