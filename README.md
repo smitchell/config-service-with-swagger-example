@@ -40,7 +40,7 @@ mvn clean install
 Run the sample client project by itself. Call the /message endpoint. 
 
 ```
-java -jar sample-client/target/sample-client-0.0.1-SNAPSHOT.jar --spring.config.import=optional:configserver:http://127.0.0.1:8888/
+java -jar sample-client/target/sample-client-0.0.1-SNAPSHOT.jar 
 ```
 
 Open http://localhost:8181/api/message/100 or use curl in a separate window.
@@ -64,7 +64,7 @@ java -jar config-service/target/config-service-0.0.1-SNAPSHOT.jar
 
 Once the configuration service is running, restart the sample client.
 ```
-java -jar target/sample-client-0.0.1-SNAPSHOT.jar
+java -jar sample-client/target/sample-client-0.0.1-SNAPSHOT.jar
 ```
 
 Open http://localhost:8181/api/message/100 or use curl in a separate window:
@@ -86,7 +86,7 @@ git commit -a -m "Updated value"
 
 Issue a POST to the refresh endpoint to trigger a refresh.
 ```
-git curl -X POST localhost:8181/actuator/refresh
+curl -X POST localhost:8181/actuator/refresh
 ```
 
 Open http://localhost:8181/api/message/100 or use curl in a separate window to see the new vaulue.
