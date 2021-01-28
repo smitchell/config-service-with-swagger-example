@@ -17,7 +17,10 @@ public class ContactController {
     ConcurrentMap<String, Contact> contacts = new ConcurrentHashMap<>();
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Find Contact by Id", notes = "Given an ID, returns a contact", response = Contact.class)
+    @ApiOperation(
+            value = "Find Contact by Id",
+            notes = "Given an ID, returns a contact",
+            response = Contact.class)
     public Optional<Contact> getContact(@PathVariable final String id) {
         final Contact contact = contacts.get(id);
         if (contact == null) {

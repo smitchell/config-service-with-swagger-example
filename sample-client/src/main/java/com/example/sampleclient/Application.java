@@ -6,12 +6,9 @@ import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.Collections;
 
 @EnableSwagger2
 @SpringBootApplication
@@ -32,15 +29,15 @@ public class Application {
                 .apiInfo(this.apiDetails());
     }
 
-	private ApiInfo apiDetails() {
+    private ApiInfo apiDetails() {
         return new ApiInfo(
                 "Sample Config Service Client",
                 "API for example project",
                 "1.0",
-                "Apache 2.0",
+                "Free to use",
                 "Steve Mitchell",
-                "http://smitchell.github.io",
-				null);
+                "Apache 2.0",
+                null);
     }
 
 
